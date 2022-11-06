@@ -46,6 +46,6 @@ git clone https://github.com/tsolucio/corebos.git
 chown www-data:www-data corebos
 
 echo 
-echo -----------------------
+echo -----------------
 echo Done successfully
-echo -----------------------
+echo -----------------

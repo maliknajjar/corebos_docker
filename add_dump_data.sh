@@ -24,6 +24,6 @@ docker cp ./coreBOSTests.sql mysql:/
 docker container exec mysql /bin/bash -c "mysql -uroot -proot corebos80 < /coreBOSTests.sql"
 
 echo 
-echo -----------------------
+echo -----------------
 echo Done successfully
-echo -----------------------
+echo -----------------
