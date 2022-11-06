@@ -21,31 +21,9 @@ if [[ $(which zip) && $(zip --version) ]]; then
     echo "zip is NOT installed"
     exit
 fi
-if [[ $(which unzip) && $(unzip --version) ]]; then
-    echo "unzip is installed"
-  else
-    echo "unzip is NOT installed"
-    exit
-fi
-
-echo 
-echo ---------------------
-echo unzipping db_data.zip
-echo ---------------------
-echo 
 
 unzip db_data.zip
 
-echo 
-echo ----------------
-echo Fetching corebos
-echo ----------------
-echo 
-
 git clone https://github.com/tsolucio/corebos.git
-chown www-data:www-data corebos
 
-echo 
-echo -----------------
-echo Done successfully
-echo -----------------
+chown -R www-data:www-data corebos
