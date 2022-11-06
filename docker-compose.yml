@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+
+  corebos:
+    image: "corebos"
+    container_name: corebos
+    restart: always
+    build: 
+      context: .
+      dockerfile: Dockerfile.corebos
+    ports:
+      - 80:80
+    volumes:
+      - "./corebos:/var/www/html/corebos"
+      - "./index/index.php:/var/www/html/index.php"
+      - "./config/apache2.conf:/etc/apache2/apache2.conf"
+      - "./config/php.ini:/usr/local/etc/php/php.ini"
+    networks:
+      - corebos_net
+    depends_on:
+      - mysql
+
+  mysql:
+    image: "mysql:8.0.31"
+    container_name: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=corebos80
+    volumes:
+      - "./db_data:/var/lib/mysql"
+    networks:
+      - corebos_net
+
+  phpmyadmin:
+    image: "phpmyadmin:5.2.0"
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql
+    networks:
+      - corebos_net
+    depends_on:
+      - mysql
+
+networks:
+  corebos_net:
